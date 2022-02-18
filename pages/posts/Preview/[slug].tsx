@@ -21,7 +21,6 @@ interface PreviewProps {
 }
 
 
-
 export default function PreviewPost({posts}: PreviewProps) {
   
   const session = useSession();
@@ -33,6 +32,7 @@ export default function PreviewPost({posts}: PreviewProps) {
         router.push(`/posts/${posts.slug}`)
       }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [session])
 
  
@@ -53,6 +53,9 @@ export default function PreviewPost({posts}: PreviewProps) {
           <Link href={'/'}>
             <a href="">Subscribe now 🤗</a>
           </Link>
+        </div>
+        <div>
+         
         </div>
       </article>
     </main>
@@ -90,3 +93,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: { posts, }
   }
 }
+
