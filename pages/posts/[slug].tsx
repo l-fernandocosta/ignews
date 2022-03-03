@@ -2,9 +2,7 @@
 import { Document } from "@prismicio/client/types/documents"
 import { GetServerSideProps } from "next"
 import { getSession } from "next-auth/react"
-import { redirect } from "next/dist/server/api-utils"
 import Head from "next/head"
-import { useRouter } from "next/router"
 import { RichText } from "prismic-dom"
 import Client from "../../services/prismicHelper"
 import styles from './post.module.scss'
