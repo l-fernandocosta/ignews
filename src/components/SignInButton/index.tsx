@@ -16,16 +16,9 @@ export default function SignInButton() {
       
       
   )  :  (
-  <button type="button" className={styles.signInButton} onClick={() =>  signIn('github').then(async ()=> {
-    
-    toast.success(`Vamos ler as notícias ?`)
-  })}>
+  <button type="button" className={styles.signInButton} onClick={() =>  signIn('github')}>
     <GoMarkGithub color='#eba417' size={25}
   /> Sign in with GitHub</button>
-  
-
-        
-
   );
    
 } 
