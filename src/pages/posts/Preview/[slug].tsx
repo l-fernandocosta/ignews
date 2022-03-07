@@ -1,6 +1,6 @@
 
 import { Document } from "@prismicio/client/types/documents"
-import { GetStaticPaths, GetStaticPathsContext, GetStaticProps } from "next"
+import { GetStaticPaths, GetStaticProps } from "next"
 import { useSession } from "next-auth/react"
 
 import Head from "next/head"

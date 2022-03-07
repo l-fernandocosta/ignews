@@ -8,28 +8,29 @@ import Client from "../../services/prismicHelper"
 import styles from './post.module.scss'
 
 interface PostsProps {
-  posts: {
-    slug: string,
-    title: string,
-    content: string,
-    updateAt: string
-  }
+    post: {
+      slug: string,
+      title: string,
+      content: string,
+      updateAt: string
+    }
 }
 
 
 
-export default function Slug({ posts }: PostsProps) {
+
+export default function Slug({ post }: PostsProps) {
   return (
     <main className={styles.container}>
-      <Head><title> {posts.title} | ig.news</title></Head>
+      <Head><title> {post?.title} | ig.news</title></Head>
       <article className={styles.post}>
 
-        <h1>{posts.title}</h1>
-        <time>{posts.updateAt}</time>
+        <h1>{post.title}</h1>
+        <time>{post.updateAt}</time>
 
         <div
           className={styles.postContent}
-          dangerouslySetInnerHTML={{ __html: posts.content }}>
+          dangerouslySetInnerHTML={{ __html: post.content }}>
 
         </div>
       </article>
@@ -41,19 +42,18 @@ export default function Slug({ posts }: PostsProps) {
 
 export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
   const session = await getSession({ req });
-  
-  const {slug} = params;
+  const { slug } = params;
 
-  if (!session?.activeSession) {
+  if (!session) {
     return {
       redirect: {
-        destination: `/posts/Preview/${slug}`,
+        destination: `/posts/preview/${slug}`,
         permanent: false
       }
     }
   }
   const response: Document = await Client().getByUID('myCustomType', String(slug), {})
-  const posts = {
+  const post = {
     slug,
     title: RichText.asText(response.data.title),
     content: RichText.asHtml(response.data.content),
@@ -65,6 +65,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
 
   }
   return {
-    props: { posts }
+    props: { post }
   }
 }

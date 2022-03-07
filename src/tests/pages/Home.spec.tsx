@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react"
-import { ToObject } from "faunadb";
 import { mocked } from "ts-jest/dist/utils/testing";
 import Home, { getStaticProps } from "../../pages"
 import stripe from '../../services/stripe'

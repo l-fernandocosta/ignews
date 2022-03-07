@@ -24,9 +24,11 @@ interface PostsProps {
 
 
 export default function Posts({posts}: PostsProps) {
+  console.log(RichText.asText(posts))
+
   return(
-    
     <>
+    
     <Head> <title> Posts | ig.news</title> </Head>
 
       <main className={styles.container}>
@@ -35,7 +37,7 @@ export default function Posts({posts}: PostsProps) {
           {posts.map((post) => (
            
            <Link href={`/posts/${post.slug}`} key= {post.slug}>
-              <a key = {post.slug} href= '#'>
+              <a href= '#'>
               <time>{post.updatedAt}</time>
               <strong> {post.title}</strong>
               <p>{post.excerpt}</p>
@@ -52,16 +54,14 @@ export default function Posts({posts}: PostsProps) {
 
 
 export const getStaticProps : GetStaticProps = async () => {
-  const document : ApiSearchResponse = await  Client().query([Prismic.Predicates.at('document.type', 'myCustomType')],
+  const prismic  =  Client();
+  const response : ApiSearchResponse = await prismic.query([Prismic.Predicates.at('document.type', 'myCustomType')],
    {
      fetch: ['myCustomType.title', 'myCustomType.content'],
      pageSize: 100, 
    })
 
-  
-  // console.log(JSON.stringify(document, null, 2))
-  
-  const posts  = document.results.map(post  => {
+  const posts  = response.results.map(post  => {
     return {
       slug: post.uid,
       title: RichText.asText(post.data.title),
@@ -70,11 +70,18 @@ export const getStaticProps : GetStaticProps = async () => {
         day: "2-digit",
         month:  "long",
         year: "numeric"
-      })
+      }
+      )
   
     }
+    
   })
+  
   return {
-   props: {posts}
+    
+   props: {posts},
+   revalidate: 60*60*24 //24hours
+   
  }
+
 }
