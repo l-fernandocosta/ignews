@@ -57,7 +57,8 @@ describe('SubscribeButton Tests', () => {
 
     
     render(<SubscribeButton />)
-    const subsButton = screen.getByText('Subscribe now');
+    const subsButton = screen.getByRole('button', {name: /Subscribe now/i})
+    screen.logTestingPlaygroundURL();
 
     fireEvent.click(subsButton);
     expect(pushMocked).toHaveBeenCalledWith('/posts');

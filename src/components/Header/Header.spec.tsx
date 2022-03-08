@@ -23,9 +23,10 @@ jest.mock('next-auth/react', () => {
 
 describe('Header Tests', () => {
   it('Header link Home rendering ', () => {
-    const {debug} = render(
+   render(
       <Header/>
     )
+    screen.logTestingPlaygroundURL();
     expect(screen.getByText('Home')).toBeInTheDocument();
     expect(screen.getByText('Posts')).toBeInTheDocument();
   })

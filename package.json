@@ -6,15 +6,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "slicemachine": "start-slicemachine",
     "test": "jest --env=jsdom"
   },
   "dependencies": {
     "@prismicio/client": "5.1.1",
     "@prismicio/helpers": "^2.1.1",
     "@prismicio/react": "^2.0.6",
-    "@prismicio/slice-simulator-react": "^0.2.0",
-    "@slicemachine/init": "^1.1.0",
     "@stripe/stripe-js": "^1.22.0",
     "@types/jest": "^27.4.1",
     "@types/micro": "^7.3.6",
@@ -55,7 +52,6 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
     "prismic-helpers": "^1.0.3",
-    "slice-machine-ui": "0.2.0",
     "typescript": "^4.5.5"
   },
   "version": "1.0.0",
