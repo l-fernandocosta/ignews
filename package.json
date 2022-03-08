@@ -60,5 +60,8 @@
   "resolutions": {
     "d2/left-pad": "1.1.1",
     "c/**/left-pad": "^1.1.2"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.8.0"
   }
 }
